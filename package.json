@@ -1,0 +1,15 @@
+{
+  "name": "manic-deploy",
+  "version": "0.0.1",
+  "description": "Deploy when notified by GitHub webhook.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "~4.8.8",
+    "body-parser": "~1.8.1",
+    "json-middleware": "~1.0.2",
+    "forever": "~0.11.1"
+  },
+  "devDependencies": {},
+  "author": "Emil Axelsson",
+  "license": "MIT"
+}
