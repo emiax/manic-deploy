@@ -54,8 +54,13 @@ function stopCommand(file) {
 function deployCommand(deployFolder, executableFile, repositoryUrl, branch) {
   var command = [
     stopCommand(executableFile),
-    'git -C ' + deployFolder + ' init',
-    'git -C ' + deployFolder + ' pull ' + repositoryUrl + ' ' + branch,
+    'here=`pwd`',
+    'cd ' + deployFolder,
+    'git init',
+    'git stash',
+    'git pull ' + repositoryUrl + ' ' + branch,
+    'npm install',
+    'cd $here',
     startCommand(executableFile)
   ].join('\n');
   return command;
@@ -84,6 +89,7 @@ function deployConfig(config, callback) {
                               config.executableFile,
                               config.repositoryUrl,
                               config.branch);
+  console.log(command);
   exec(command, function (err, stdout, stderr) {
     if (err) {
       console.error('error when deploying ' + JSON.stringify(config) +
