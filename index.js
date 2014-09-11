@@ -58,7 +58,8 @@ function deployCommand(deployFolder, executableFile, repositoryUrl, branch) {
     'cd ' + deployFolder,
     'git init',
     'git stash',
-    'git pull ' + repositoryUrl + ' ' + branch,
+    'git fetch ' + repositoryUrl + ' ' + branch,
+    'git reset --hard FETCH_HEAD',
     'npm install',
     'cd $here',
     startCommand(executableFile)
